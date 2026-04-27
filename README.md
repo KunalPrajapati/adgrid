@@ -1,73 +1,80 @@
-# React + TypeScript + Vite
+---
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 📊 API Requirements Documentation
 
-Currently, two official plugins are available:
+## 1. Dashboard
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* **Stats API**
 
-## React Compiler
+  * A separate API to fetch overall statistics for the dashboard.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **Orders API (Reusable)**
 
-## Expanding the ESLint configuration
+  * API to fetch orders with filters.
+  * Designed to be reusable across:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+    * Dashboard
+    * Orders section
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 2. Orders
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+* **Orders API**
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+  * Provides all order-related data.
+  * Filtering is handled on the frontend.
+  * Supports parameters like:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+    * Page size
+    * Pagination
+  * Reusable for dashboard usage as well.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+## 3. Inventory
+
+* **Inventory API**
+
+  * Provides complete inventory data.
+  * Includes stock status:
+
+    * Healthy stock
+    * Low stock
+    * Critical stock
+
+---
+
+## 4. Menu
+
+* **Menu API**
+
+  * Returns all menu-related data.
+  * Filtering is handled on the frontend.
+
+---
+
+## 5. Staff Management
+
+* **Staff API**
+
+  * Provides all staff-related data.
+  * Includes status information:
+
+    * On duty
+    * On break
+    * Off duty
+
+---
+
+## 6. Analytics
+
+* **Stats API**
+
+  * Same API used in the Dashboard for statistics.
+
+* **Profile API**
+
+  * Provides complete profile-related data.
+
+---
